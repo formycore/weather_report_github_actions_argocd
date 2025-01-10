@@ -58,6 +58,7 @@ jobs:
                 git config --global user.email "<formycore@gmail.com>"
                 git config --global user.name "Sreeleeela"
                 git commit -m "added the tage {{env.VERSION}}"
+                git add deploy/deploy.yml
                 git push origin master
-                
+
 
