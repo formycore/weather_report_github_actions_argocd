@@ -58,7 +58,7 @@ jobs:
               run: |
                 git config --global user.email "<formycore@gmail.com>"
                 git config --global user.name "Sreeleeela"
-                git add deploy/deploy.yml
+                git add deploy/deploy.yaml
                 git commit -m "added the tage {{env.VERSION}}"
                 git remote set-url origin https://github-actions:${{ secrets.TOKEN }}@github.com/formycore/weather_report_github_actions_argocd.git
                 git push origin master
