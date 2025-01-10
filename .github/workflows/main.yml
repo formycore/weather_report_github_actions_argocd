@@ -52,13 +52,15 @@ jobs:
             - name: Update the image name in the deployment
               run: |
                   sed -i "s|image: formycore/weatherapp:*|image: formycore/weatherapp:${{env.VERSION}}|g" deploy/deploy.yaml
+                  cat deploy/deploy.yaml
             # Update the github
             - name: Commit the changes
               run: |
                 git config --global user.email "<formycore@gmail.com>"
                 git config --global user.name "Sreeleeela"
-                git commit -m "added the tage {{env.VERSION}}"
                 git add deploy/deploy.yml
+                git commit -m "added the tage {{env.VERSION}}"
+                git remote set-url origing https://github-actions:${{ secrets.TOKEN }}@github.com/formycore/weather_report_github_actions_argocd.git
                 git push origin master
 
 
