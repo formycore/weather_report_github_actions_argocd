@@ -51,7 +51,7 @@ jobs:
             # Update the image in k8s manifest
             - name: Update the image name in the deployment
               run: |
-                  sed -i "s|image: formycore/weatherapp:*|image: formycore/weatherapp:${{env.VERSION}}|g" deploy/deploy.yaml
+                  sed -i "s|image: formycore/weatherapp:.*|image: formycore/weatherapp:${{env.VERSION}}|g" deploy/deploy.yaml
                   cat deploy/deploy.yaml
             # Update the github
             - name: Commit the changes
