@@ -43,15 +43,15 @@ jobs:
             # Build the image
             - name: Docker build
               run: |
-                docker build . -t formycore/weatherapp:${{env.VERSION}} 
+                docker build . -t formycore/weatherapp:${{ github.env.VERSION }} 
             # Build push it to the docker hub
             - name: Docker push
               run: |
-                docker push formycore/weatherapp:${{env.VERSION}} 
+                docker push formycore/weatherapp:${{ github.env.VERSION }} 
             # Update the image in k8s manifest
             - name: Update the image name in the deployment
               run: |
-                  sed -i "s|image: formycore/weatherapp:.*|image: formycore/weatherapp:${{env.VERSION}}|g" deploy/deploy.yaml
+                  sed -i "s|image: formycore/weatherapp:.*|image: formycore/weatherapp:${{github.env.VERSION}}|g" deploy/deploy.yaml
                   cat deploy/deploy.yaml
             # Update the github
             - name: Commit the changes
@@ -60,7 +60,7 @@ jobs:
                 git config --global user.name "Sreeleeela"
                 git add deploy/deploy.yml
                 git commit -m "added the tage {{env.VERSION}}"
-                git remote set-url origing https://github-actions:${{ secrets.TOKEN }}@github.com/formycore/weather_report_github_actions_argocd.git
+                git remote set-url origin https://github-actions:${{ secrets.TOKEN }}@github.com/formycore/weather_report_github_actions_argocd.git
                 git push origin master
 
 
