@@ -43,7 +43,7 @@ jobs:
             # Build the image
             - name: Docker build
               run: |
-                docker build -t formycore/weatherapp:${{env.VERSION}}
+                docker build . -t formycore/weatherapp:${{env.VERSION}} 
             # Build push it to the docker hub
             - name: Docker push
               run: |
