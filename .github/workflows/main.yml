@@ -48,3 +48,16 @@ jobs:
             - name: Docker push
               run: |
                 docker push formycore/weatherapp:${{env.VERSION}} 
+            # Update the image in k8s manifest
+            - name: Update the image name in the deployment
+              run: |
+                  sed -i "s|image: formycore/weatherapp:*|image: formycore/weatherapp:${{env.VERSION}}|g" deploy/deploy.yaml
+            # Update the github
+            - name: Commit the changes
+              run: |
+                git config --global user.email "<formycore@gmail.com>"
+                git config --global user.name "Sreeleeela"
+                git commit -m "added the tage {{env.VERSION}}"
+                git push origin master
+                
+
