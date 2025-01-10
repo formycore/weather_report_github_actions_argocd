@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: demo-app
-        image: formycore/weatherapp:
+        image: formycore/weatherapp:v20250110180253
         ports:
         - containerPort: 5000
